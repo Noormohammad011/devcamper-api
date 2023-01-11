@@ -1,5 +1,9 @@
 import express from 'express'
+import Bootcamp from '../models/bootCampModel.js'
+//middleware 
+import advancedResults from '../middleware/advancedResults.js'
 import {
+  bootcampPhotoUpload,
   createBootcamp,
   deleteBootcamp,
   getBootcamp,
@@ -18,7 +22,13 @@ router.use('/:bootcampId/courses', courseRouter)
 
 
 router.route('/radius/:zipcode/:distance').get(getBootcampsInRadius)
-router.route('/').get(getBootcamps).post(createBootcamp)
+
+//upload photo 
+router.route('/:id/photo').put(bootcampPhotoUpload)
+router
+  .route('/')
+  .get(advancedResults(Bootcamp, 'courses'), getBootcamps)
+  .post(createBootcamp)
 router.route('/:id').get(getBootcamp).put(updateBootcamp).delete(deleteBootcamp)
 
 export default router

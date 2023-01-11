@@ -2,18 +2,13 @@ import asyncHandler from 'express-async-handler'
 import Bootcamp from '../models/bootCampModel.js'
 import ErrorResponse from '../utils.js/errorResponse.js'
 import geocoder from '../utils.js/geocoder.js'
+import path from 'path'
 // @desc      Get all bootcamps
 // @route     GET /api/v1/bootcamps
 // @access    Public
 
 const getBootcamps = asyncHandler(async (req, res) => {
-  const bootcamps = await Bootcamp.find({})
-  if (bootcamps.length === 0) {
-    return res.status(400).json({ success: false, msg: 'No bootcamps found' })
-  }
-  res
-    .status(200)
-    .json({ success: true, count: bootcamps.length, data: bootcamps })
+  res.status(200).json(res.advancedResults)
 })
 
 // @desc      Get single bootcamp
@@ -97,6 +92,49 @@ const getBootcampsInRadius = asyncHandler(async (req, res, next) => {
   })
 })
 
+// @desc      Upload photo for bootcamp
+// @route     PUT /api/v1/bootcamps/:id/photo
+// @access    Private
+
+const bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
+  const bootcamp = await Bootcamp.findById(req.params.id)
+  if (!bootcamp) {
+    return next(
+      new ErrorResponse(`Bootcamp not found with id of ${req.params.id}`, 404)
+    )
+  }
+  if (!req.files) {
+    return next(new ErrorResponse(`Please upload a file`, 400))
+  }
+  const file = req.files.file
+  // Make sure the image is a photo
+  if (!file.mimetype.startsWith('image')) {
+    return next(new ErrorResponse(`Please upload an image file`, 400))
+  }
+  // Check file size
+  if (file.size > process.env.MAX_FILE_UPLOAD) {
+    return next(
+      new ErrorResponse(
+        `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`,
+        400
+      )
+    )
+  }
+  // Create custom filename
+  file.name = `photo_${bootcamp._id}${path.parse(file.name).ext}`
+  file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
+    if (err) {
+      console.error(err)
+      return next(new ErrorResponse(`Problem with file upload`, 500))
+    }
+    await Bootcamp.findByIdAndUpdate(req.params.id, { photo: file.name })
+    res.status(200).json({
+      success: true,
+      data: file.name,
+    })
+  })
+})
+
 export {
   getBootcamps,
   getBootcamp,
@@ -104,4 +142,5 @@ export {
   createBootcamp,
   updateBootcamp,
   getBootcampsInRadius,
+  bootcampPhotoUpload,
 }
