@@ -1,8 +1,7 @@
 import express from 'express'
 import chalk from 'chalk'
 import cors from 'cors'
-import dotenv from 'dotenv'
-
+import * as dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
@@ -12,9 +11,11 @@ import bootcampsRoutes from './routes/bootcampsRoutes.js'
 //import middlewares
 import morgan from 'morgan'
 
+
+//dotenv config 
+dotenv.config()
 //express configuration
 const app = express()
-dotenv.config()
 
 //conncet to database
 connectDB()
