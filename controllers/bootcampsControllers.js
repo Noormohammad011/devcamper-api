@@ -8,7 +8,7 @@ import geocoder from '../utils.js/geocoder.js'
 
 const getBootcamps = asyncHandler(async (req, res) => {
   const bootcamps = await Bootcamp.find({})
-  if (!bootcamps) {
+  if (bootcamps.length === 0) {
     return res.status(400).json({ success: false, msg: 'No bootcamps found' })
   }
   res
