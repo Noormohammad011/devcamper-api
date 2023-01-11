@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Course from '../models/courseModel.js'
-
+import Bootcamp from '../models/bootCampModel.js'
 // @desc      Get courses
 // @route     GET /api/v1/courses
 // @route     GET /api/v1/bootcamps/:bootcampId/courses
@@ -33,4 +33,21 @@ const getCourse = asyncHandler(async (req, res, next) => {
   res.status(200).json({ success: true, data: course })
 })
 
-export { getCourses, getCourse }
+// @desc      Add course
+// @route     POST /api/v1/bootcamps/:bootcampId/courses
+// @access    Private
+
+const addCourse = asyncHandler(async (req, res, next) => { 
+  req.body.bootcamp = req.params.bootcampId
+
+  const bootcamp = await Bootcamp.findById(req.params.bootcampId)
+  if (!bootcamp) {
+    return next(
+      new ErrorResponse(`No bootcamp with the id of ${req.params.bootcampId}`, 404)
+    )
+  }
+  const course = await Course.create(req.body)
+  res.status(201).json({ success: true, data: course })
+})
+
+export { getCourses, getCourse, addCourse }
