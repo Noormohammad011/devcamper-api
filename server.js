@@ -7,7 +7,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 //import router
 import bootcampsRoutes from './routes/bootcampsRoutes.js'
-
+import coursesRoutes from './routes/courseRoutes.js'
 //import middlewares
 import morgan from 'morgan'
 
@@ -32,6 +32,7 @@ app.use(cors())
 
 //route mount
 app.use('/api/v1/bootcamps', bootcampsRoutes)
+app.use('/api/v1/courses', coursesRoutes)
 
 
 
