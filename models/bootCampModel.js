@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-
+import slugify from 'slugify'
 const BootcampSchema = mongoose.Schema(
   {
     name: {
@@ -99,6 +99,12 @@ const BootcampSchema = mongoose.Schema(
     }
   }
 )
+
+// Create bootcamp slug from the name
+BootcampSchema.pre('save', function (next) { 
+  this.slug = slugify(this.name, { lower: true })
+  next()
+})
 
 const Bootcamp = mongoose.model('Bootcamp', BootcampSchema)
 
