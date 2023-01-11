@@ -5,8 +5,9 @@ import dotenv from 'dotenv'
 
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
+
 //import router
-// import taskRoutes from './routes/taskRoutes.js'
+import bootcampsRoutes from './routes/bootcampsRoutes.js'
 
 //import middlewares
 import morgan from 'morgan'
@@ -28,8 +29,10 @@ app.use(express.urlencoded({ extended: true }))
 // Enable cors
 app.use(cors())
 
-//route configaration
-// app.use('/api/v1/tasks', taskRoutes)
+//route mount
+app.use('/api/v1/bootcamps', bootcampsRoutes)
+
+
 
 //middleware for error handling
 app.use(notFound)
