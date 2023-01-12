@@ -11,6 +11,7 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import bootcampsRoutes from './routes/bootcampsRoutes.js'
 import coursesRoutes from './routes/courseRoutes.js'
 import authRoutes from './routes/authRoutes.js'
+import userAdminRoutes from './routes/adminUserRoutes.js'
 //import middlewares
 import morgan from 'morgan'
 import path from 'path'
@@ -45,6 +46,7 @@ app.use(express.static(path.join(path.dirname(''), 'public')))
 app.use('/api/v1/bootcamps', bootcampsRoutes)
 app.use('/api/v1/courses', coursesRoutes)
 app.use('/api/v1/auth', authRoutes)
+app.use('/api/v1/users', userAdminRoutes)
 
 //middleware for error handling
 app.use(notFound)
