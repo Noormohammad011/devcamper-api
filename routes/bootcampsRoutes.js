@@ -14,12 +14,14 @@ import {
 
 // Include other resource routers
 import courseRouter from './courseRoutes.js'
+import reviewRouter from './reviewRoutes.js'
 import { authorize, protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
 //Re-route into other resource routers
 router.use('/:bootcampId/courses', courseRouter)
+router.use('/:bootcampId/reviews', reviewRouter)
 
 router.route('/radius/:zipcode/:distance').get(getBootcampsInRadius)
 

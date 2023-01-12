@@ -12,6 +12,8 @@ import bootcampsRoutes from './routes/bootcampsRoutes.js'
 import coursesRoutes from './routes/courseRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import userAdminRoutes from './routes/adminUserRoutes.js'
+import reviewsRoutes from './routes/reviewRoutes.js'
+
 //import middlewares
 import morgan from 'morgan'
 import path from 'path'
@@ -47,6 +49,7 @@ app.use('/api/v1/bootcamps', bootcampsRoutes)
 app.use('/api/v1/courses', coursesRoutes)
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users', userAdminRoutes)
+app.use('/api/v1/reviews', reviewsRoutes)
 
 //middleware for error handling
 app.use(notFound)
