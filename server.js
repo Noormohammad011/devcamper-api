@@ -4,6 +4,7 @@ import cors from 'cors'
 import * as dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import fileUpload from 'express-fileupload'
+import cookieParser from 'cookie-parser'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 //import router
@@ -28,7 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // For parsing application/json
 app.use(express.json())
-
+app.use(cookieParser())
 // For parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }))
 // Enable cors
