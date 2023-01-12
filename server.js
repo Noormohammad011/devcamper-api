@@ -9,10 +9,10 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 //import router
 import bootcampsRoutes from './routes/bootcampsRoutes.js'
 import coursesRoutes from './routes/courseRoutes.js'
+import authRoutes from './routes/authRoutes.js'
 //import middlewares
 import morgan from 'morgan'
 import path from 'path'
-
 
 //dotenv config
 dotenv.config()
@@ -43,6 +43,7 @@ app.use(express.static(path.join(path.dirname(''), 'public')))
 //route mount
 app.use('/api/v1/bootcamps', bootcampsRoutes)
 app.use('/api/v1/courses', coursesRoutes)
+app.use('/api/v1/auth', authRoutes)
 
 //middleware for error handling
 app.use(notFound)
