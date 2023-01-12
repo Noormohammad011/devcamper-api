@@ -1,6 +1,6 @@
 import express from 'express'
 import advancedResults from '../middleware/advancedResults.js'
-import { addReview, getReview, getReviews } from '../controllers/reviewControllers.js'
+import { addReview, deleteReview, getReview, getReviews, updateReview } from '../controllers/reviewControllers.js'
 import Review from '../models/reviewModel.js'
 import { authorize, protect } from '../middleware/authMiddleware.js'
 
@@ -19,6 +19,10 @@ router
     getReviews
   )
   .post(protect, authorize('user', 'admin'), addReview)
-router.route('/:id').get(getReview)
+router
+  .route('/:id')
+  .get(getReview)
+  .put(protect, authorize('user', 'admin'), updateReview)
+  .delete(protect, authorize('user', 'admin'), deleteReview)
 
 export default router
