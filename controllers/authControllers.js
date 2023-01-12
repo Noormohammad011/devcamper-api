@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import ErrorResponse from '../utils.js/errorResponse.js'
 
 // @desc      Register user
 // @route     POST /api/v1/auth/register
@@ -46,7 +47,7 @@ const login = asyncHandler(async (req, res, next) => {
 // @access    Private
 
 const getMe = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.auth.id)
+  const user = await User.findById(req.user.id)
   res.status(200).json({
     success: true,
     data: user,

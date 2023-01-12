@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Course from '../models/courseModel.js'
+import ErrorResponse from '../utils.js/errorResponse.js'
 import Bootcamp from '../models/bootCampModel.js'
 // @desc      Get courses
 // @route     GET /api/v1/courses
