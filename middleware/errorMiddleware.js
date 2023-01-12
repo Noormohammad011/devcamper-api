@@ -20,6 +20,12 @@ const errorHandler = (err, req, res, next) => {
     error = new ErrorResponse(message, 400)
   }
 
+  //auth error
+  if (err.code === 'credentials_required') {
+    const message = 'No authorization token was found'
+    error = new ErrorResponse(message, 401)
+  }
+
   // Mongoose validation error
   if (err.name === 'ValidationError') {
     const message = Object.values(err.errors).map((val) => val.message)

@@ -1,7 +1,14 @@
 import express from 'express'
-import { addCourse, deleteCourse, getCourse, getCourses, updateCourse } from '../controllers/courseControllers.js'
+import {
+  addCourse,
+  deleteCourse,
+  getCourse,
+  getCourses,
+  updateCourse,
+} from '../controllers/courseControllers.js'
 import advancedResults from '../middleware/advancedResults.js'
 import Course from '../models/courseModel.js'
+import { protect } from '../middleware/authMiddleware.js'
 
 const router = express.Router({
   mergeParams: true,
@@ -16,7 +23,11 @@ router
     }),
     getCourses
   )
-  .post(addCourse)
-router.route('/:id').get(getCourse).put(updateCourse).delete(deleteCourse)
+  .post(protect, addCourse)
+router
+  .route('/:id')
+  .get(getCourse)
+  .put(protect, updateCourse)
+  .delete(protect, deleteCourse)
 
 export default router
