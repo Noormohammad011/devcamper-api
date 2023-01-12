@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 import ErrorResponse from '../utils.js/errorResponse.js'
 import sendEmail from '../utils.js/sendEmail.js'
+import crypto from 'crypto'
 // @desc      Register user
 // @route     POST /api/v1/auth/register
 // @access    Public
@@ -54,26 +55,7 @@ const getMe = asyncHandler(async (req, res, next) => {
   })
 })
 
-//Get token from model, create cookie and send response
-const sendTokenResponse = (user, statusCode, res) => {
-  //Create token
-  const token = user.getSignedJwtToken()
-  const options = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true,
-  }
 
-  if (process.env.NODE_ENV === 'production') {
-    options.secure = true
-  }
-
-  res.status(statusCode).cookie('token', token, options).json({
-    success: true,
-    token,
-  })
-}
 
 //@dec    Forgot password
 //@route  POST /api/v1/auth/forgotpassword
@@ -113,5 +95,54 @@ const forgotPassword = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Email could not be sent', 500))
   }
 })
+// @desc      Reset password
+// @route     PUT /api/v1/auth/resetpassword/:resettoken
+// @access    Public
 
-export { register, login, getMe, forgotPassword }
+const resetPassword = asyncHandler(async (req, res, next) => {
+  // Get hashed token
+  const resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(req.params.resettoken)
+    .digest('hex')
+
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: { $gt: Date.now() },
+  })
+
+  if (!user) {
+    return next(new ErrorResponse('Invalid token', 400))
+  }
+
+  // Set new password
+  user.password = req.body.password
+  user.resetPasswordToken = undefined
+  user.resetPasswordExpire = undefined
+  await user.save()
+
+  sendTokenResponse(user, 200, res)
+})
+
+
+//Get token from model, create cookie and send response
+const sendTokenResponse = (user, statusCode, res) => {
+  //Create token
+  const token = user.getSignedJwtToken()
+  const options = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  }
+
+  if (process.env.NODE_ENV === 'production') {
+    options.secure = true
+  }
+
+  res.status(statusCode).cookie('token', token, options).json({
+    success: true,
+    token,
+  })
+}
+export { register, login, getMe, forgotPassword, resetPassword }
