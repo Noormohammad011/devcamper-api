@@ -1,6 +1,11 @@
 import express from 'express'
 import chalk from 'chalk'
 import cors from 'cors'
+import mongoSanitize from 'express-mongo-sanitize'
+import xss from 'xss-clean'
+import helmet from 'helmet'
+import hpp from 'hpp'
+import rateLimit from 'express-rate-limit'
 import * as dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import fileUpload from 'express-fileupload'
@@ -40,6 +45,26 @@ app.use(cors())
 
 //file upload
 app.use(fileUpload())
+
+//sanitize data
+app.use(mongoSanitize())
+
+//set security headers
+app.use(helmet())
+
+//prevent xss attacks
+app.use(xss())
+
+//prevent http param pollution
+app.use(hpp())
+
+//rate limiting
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 mins
+  max: 100,
+})
+
+app.use(limiter)
 
 //set static folder
 app.use(express.static(path.join(path.dirname(''), 'public')))
