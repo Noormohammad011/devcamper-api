@@ -36,8 +36,13 @@ yarn data:destroy or npm data:distroy
 The API is live at [:link:LiveLInk](https://devcamper-api-production-a40f.up.railway.app/api-docs/)
 
 > Noor Mohammad
-## 🚀 About Me
-I'm a full stack developer. Fell free to connect via [:link:facebook](hhttps://www.facebook.com/profile.php?id=100007513814577)
+### 🚀 About Me
+I'm a full stack developer & passionate to do my designation's responsibility and hungry to explore new technology.
+
+### Feedback
+
+If you have any feedback, please reach out to me at [:link:facebook](https://www.facebook.com/profile.php?id=100007513814577)
+
 
 ## Special Thanks 
-:black_heart: :black_heart:Brad Traversy :black_heart::black_heart:
+:black_heart::black_heart:Brad Traversy :black_heart::black_heart:
