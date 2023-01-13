@@ -5,6 +5,10 @@ import mongoSanitize from 'express-mongo-sanitize'
 import xss from 'xss-clean'
 import helmet from 'helmet'
 import hpp from 'hpp'
+//swagger
+import swaggerUi from 'swagger-ui-express'
+import YAML from 'yamljs'
+
 // import rateLimit from 'express-rate-limit'
 import * as dotenv from 'dotenv'
 import connectDB from './config/db.js'
@@ -58,6 +62,8 @@ app.use(xss())
 //prevent http param pollution
 app.use(hpp())
 
+//swagger
+const swaggerDocument = YAML.load('./swagger.yaml')
 //rate limiting
 // const limiter = rateLimit({
 //   windowMs: 10 * 60 * 1000, // 10 mins
@@ -69,6 +75,14 @@ app.use(hpp())
 //set static folder
 app.use(express.static(path.join(path.dirname(''), 'public')))
 
+//swagger
+app.get('/', (req, res) => {
+  res.send(
+    '<h1>Welcome to DevCamper API</h1><a href="/api-docs">Api Documents</a>'
+  )
+})
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 //route mount
 app.use('/api/v1/bootcamps', bootcampsRoutes)
 app.use('/api/v1/courses', coursesRoutes)
