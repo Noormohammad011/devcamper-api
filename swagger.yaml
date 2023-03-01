@@ -4,7 +4,7 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+- url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
   variables: {}
 - url: http://localhost:5000/api/v1/auth/resetpassword
   variables: {}
@@ -22,7 +22,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
     post:
       tags:
@@ -76,7 +76,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /bootcamps/{bootcampId}:
     parameters:
@@ -98,7 +98,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
  
     put:
@@ -153,7 +153,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   
     delete:
@@ -170,7 +170,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /bootcamps/radius/05405/10:
     get:
@@ -185,7 +185,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /bootcamps/5d713a66ec8f2b88b8f830b8/photo:
     put:
@@ -214,7 +214,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /courses:
     get:
@@ -229,7 +229,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /bootcamps/5d713995b721c3bb38c1f5d0/courses:
     get:
@@ -244,7 +244,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
     post:
       tags:
@@ -282,7 +282,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /courses/5d725c84c4ded7bcb480eaa0:
     get:
@@ -297,7 +297,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /courses/5d725a4a7b292f5f8ceff789:
     put:
@@ -328,7 +328,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
     delete:
       tags:
@@ -344,7 +344,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /auth/register:
     post:
@@ -377,7 +377,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /auth/login:
     post:
@@ -406,7 +406,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /auth/me:
     get:
@@ -423,7 +423,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /auth/forgotpassword:
     post:
@@ -450,7 +450,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /930181dc179b7488bb5d8a36e21fc08786bc2089:
     put:
@@ -494,7 +494,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
     post:
       tags:
@@ -528,7 +528,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /users/5c8a1d5b0190b214360dc038:
     get:
@@ -545,7 +545,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
     put:
       tags:
@@ -573,7 +573,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
     delete:
       tags:
@@ -589,7 +589,7 @@ paths:
       security:
       - bearer: []
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /:
     get:
@@ -618,7 +618,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
   /reviews/5d7a514b5d2c12c7449be025:
     get:
@@ -633,7 +633,7 @@ paths:
           headers: {}
       deprecated: false
       servers:
-      - url: https://devcamper-api-production-a40f.up.railway.app/api/v1
+      - url: https://nice-jade-dolphin-hat.cyclic.app/api/v1
         variables: {}
 components:
   schemas:
